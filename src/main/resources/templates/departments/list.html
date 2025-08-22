@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Department List</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+  </head>
+  <body>
+    <div class="container" style="position: relative">
+      <a
+        href="javascript:history.back()"
+        class="back-arrow"
+        title="Back"
+        aria-label="Back"
+        style="display: inline-block"
+        >&#8592;</a
+      >
+      <h1>Department List</h1>
+      <a th:href="@{/departments/create}" class="btn create-btn"
+        >Add New Department</a
+      >
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Head Doctor</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="department : ${departments}">
+            <td th:text="${department.id}">1</td>
+            <td th:text="${department.name}">Cardiology</td>
+            <td
+              th:text="${department.headDoctor != null ? department.headDoctor.name : 'N/A'}"
+            >
+              Dr. Smith
+            </td>
+            <td>
+              <a
+                th:href="@{/departments/edit/{id}(id=${department.id})}"
+                class="btn edit-btn"
+                >Edit</a
+              >
+              <a
+                th:href="@{/departments/delete/{id}(id=${department.id})}"
+                class="btn delete-btn"
+                onclick="return confirm('Are you sure you want to delete this department?');"
+                >Delete</a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

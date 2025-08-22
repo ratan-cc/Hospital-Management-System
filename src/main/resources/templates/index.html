@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
+
+</head>
+<body>
+<div class="container">
+    <h1>Hospital Management System 🏥</h1>
+    <p>Welcome to the dashboard. Please select a module to begin.</p>
+
+    <div class="home-links">
+        <a th:href="@{/patients/list}" class="home-link">Patient </a></br>
+        <a th:href="@{/doctors/list}" class="home-link">Doctor </a></br>
+        <a th:href="@{/departments/list}" class="home-link">Department </a></br>
+        <a th:href="@{/appointments/list}" class="home-link">Appointment </a></br>
+        <a th:href="@{/insurances/list}" class="home-link">Insurance </a></br>
+    </div>
+</div>
+</body>
+</html>

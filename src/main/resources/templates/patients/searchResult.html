@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Search Result</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<div class="container">
+  <h1>Search Result</h1>
+
+  <p th:if="${message}" th:text="${message}"></p>
+
+  <div th:if="${patients}">
+    <h3>Total Patients Registered: <span th:text="${patientCount}"></span></h3>
+
+    <h3>Doctors Assigned:</h3>
+    <ul>
+      <li th:each="doc : ${doctors}" th:text="${doc}"></li>
+    </ul>
+
+    <h3>Patient Details:</h3>
+    <table>
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Birth Date</th>
+        <th>Gender</th>
+        <th>Blood Group</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="patient : ${patients}">
+        <td th:text="${patient.id}"></td>
+        <td th:text="${patient.name}"></td>
+        <td th:text="${patient.email}"></td>
+        <td th:text="${patient.mobile}"></td>
+        <td th:text="${patient.birthDate}"></td>
+        <td th:text="${patient.gender}"></td>
+        <td th:text="${patient.bloodGroup}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <a th:href="@{/patients/list}" class="btn back-btn">Back to List</a>
+</div>
+</body>
+</html>

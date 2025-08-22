@@ -1,0 +1,402 @@
+/* styles.css - Hospital Management System UI - Professional Upgrade */
+
+/* Reset & base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #181c24 0%, #232a34 100%);
+  color: #f1f1f1;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 50px 20px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Make container/card bigger for all pages */
+.container {
+  background: #232a34;
+  max-width: 1600px;
+  min-width: 350px;
+  width: 100%;
+  padding: 48px 90px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), 0 6px 10px rgba(0, 0, 0, 0.25);
+  margin-bottom: 50px;
+  transition: box-shadow 0.3s ease;
+}
+
+/* Back arrow style */
+.back-arrow {
+  display: inline-block;
+  position: absolute;
+  top: 32px;
+  left: 32px;
+  font-size: 2.1rem;
+  color: #00e6d8;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.back-arrow:hover {
+  color: #3a8dde;
+}
+
+.container:hover {
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.18), 0 8px 15px rgba(0, 0, 0, 0.12);
+}
+
+/* Headings */
+h1 {
+  font-weight: 800;
+  font-size: 3rem;
+  color: #f8f8ff;
+  margin-bottom: 30px;
+  text-align: center;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* Paragraph */
+p {
+  font-size: 1.15rem;
+  color: #bfc9d1;
+  text-align: center;
+  margin-bottom: 40px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.75;
+}
+
+/* Home links (dashboard) */
+.home-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 15px;
+}
+
+.home-link {
+  background: linear-gradient(135deg, #232a34 0%, #2d3748 100%);
+  color: #f8f8ff;
+  padding: 16px 38px;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 8px;
+  box-shadow: 0 6px 15px rgba(44, 62, 80, 0.45);
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  flex: 1 1 210px;
+  text-align: center;
+  user-select: none;
+  border: 1.5px solid #3a4252;
+}
+
+.home-link:hover,
+.home-link:focus {
+  background: linear-gradient(135deg, #2d3748 0%, #181c24 100%);
+  box-shadow: 0 8px 25px rgba(44, 62, 80, 0.65);
+  transform: translateY(-3px);
+  outline: none;
+  color: #00e6d8;
+}
+
+/* Buttons (common for all buttons) */
+.btn {
+  display: inline-block;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 26px;
+  font-size: 1.05rem;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease,
+    transform 0.15s ease;
+  text-decoration: none;
+  user-select: none;
+  margin: 0 8px 8px 0;
+  white-space: nowrap;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
+  background: #232a34;
+  color: #f8f8ff;
+  border: 1.5px solid #3a4252;
+}
+
+.btn:active {
+  transform: scale(0.96);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* Specific button styles */
+.btn.create-btn {
+  background: linear-gradient(135deg, #00e6d8 0%, #00796b 100%);
+  color: #181c24;
+  box-shadow: 0 6px 20px rgba(0, 230, 216, 0.25);
+  border: 1.5px solid #00e6d8;
+}
+
+.btn.create-btn:hover {
+  background: linear-gradient(135deg, #00796b 0%, #00e6d8 100%);
+  color: #fff;
+  box-shadow: 0 8px 25px rgba(0, 230, 216, 0.45);
+}
+
+.btn.edit-btn {
+  background: linear-gradient(135deg, #3a8dde 0%, #232a34 100%);
+  color: #f8f8ff;
+  box-shadow: 0 6px 20px rgba(58, 141, 222, 0.25);
+  border: 1.5px solid #3a8dde;
+}
+
+.btn.edit-btn:hover {
+  background: linear-gradient(135deg, #232a34 0%, #3a8dde 100%);
+  color: #00e6d8;
+  box-shadow: 0 8px 25px rgba(58, 141, 222, 0.45);
+}
+
+.btn.delete-btn {
+  background: linear-gradient(135deg, #ff4b5c 0%, #232a34 100%);
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(255, 75, 92, 0.25);
+  border: 1.5px solid #ff4b5c;
+}
+
+.btn.delete-btn:hover {
+  background: linear-gradient(135deg, #232a34 0%, #ff4b5c 100%);
+  color: #ff4b5c;
+  box-shadow: 0 8px 25px rgba(255, 75, 92, 0.45);
+}
+
+.btn.save-btn {
+  background: linear-gradient(135deg, #00e6d8 0%, #232a34 100%);
+  color: #181c24;
+  box-shadow: 0 6px 20px rgba(0, 230, 216, 0.25);
+  margin-top: 30px;
+  padding: 14px 32px;
+  width: 100%;
+  max-width: 280px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.1rem;
+  border: 1.5px solid #00e6d8;
+}
+
+.btn.save-btn:hover {
+  background: linear-gradient(135deg, #232a34 0%, #00e6d8 100%);
+  color: #00e6d8;
+  box-shadow: 0 8px 25px rgba(0, 230, 216, 0.45);
+}
+
+.btn.cancel-btn {
+  background: linear-gradient(135deg, #3a4252 0%, #232a34 100%);
+  color: #bfc9d1;
+  box-shadow: 0 6px 20px rgba(58, 66, 82, 0.25);
+  margin-top: 30px;
+  padding: 14px 32px;
+  width: 100%;
+  max-width: 280px;
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.1rem;
+  border: 1.5px solid #3a4252;
+}
+
+.btn.cancel-btn:hover {
+  background: linear-gradient(135deg, #232a34 0%, #3a4252 100%);
+  color: #00e6d8;
+  box-shadow: 0 8px 25px rgba(58, 66, 82, 0.45);
+}
+
+/* Tables */
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  margin-top: 30px;
+  font-size: 1.05rem;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #232a34;
+  table-layout: auto;
+}
+
+thead {
+  background: linear-gradient(135deg, #3a8dde 0%, #232a34 100%);
+  color: #00e6d8;
+  font-weight: 700;
+  font-size: 1.15rem;
+  user-select: none;
+}
+
+thead tr th {
+  padding: 18px 36px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+tbody tr {
+  background: #232a34;
+  transition: background-color 0.35s ease, box-shadow 0.25s ease;
+  cursor: default;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.12);
+}
+
+tbody tr:hover {
+  background: #2d3748;
+  box-shadow: 0 8px 15px rgba(0, 230, 216, 0.08);
+}
+
+tbody tr td {
+  padding: 18px 36px;
+  border-bottom: 1px solid #3a4252;
+  vertical-align: middle;
+  color: #f1f1f1;
+  white-space: nowrap;
+}
+
+/* Form styles */
+form {
+  max-width: 620px;
+  margin: 0 auto;
+  background: #232a34;
+  padding: 30px 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+}
+
+label {
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #00e6d8;
+  letter-spacing: 0.02em;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="datetime-local"],
+select,
+textarea {
+  padding: 14px 18px;
+  border: 1.6px solid #3a4252;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  color: #f8f8ff;
+  background: #181c24;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  resize: vertical;
+  min-height: 48px;
+  box-shadow: inset 0 1px 4px rgb(0 0 0 / 0.12);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+textarea {
+  min-height: 100px;
+  font-family: inherit;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus,
+input[type="datetime-local"]:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #00e6d8;
+  box-shadow: 0 0 10px rgba(0, 230, 216, 0.45);
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+  .home-links {
+    flex-direction: column;
+  }
+
+  .home-link {
+    flex: 1 1 100%;
+  }
+
+  table,
+  thead,
+  tbody,
+  tr,
+  th,
+  td {
+    display: block;
+  }
+
+  thead tr {
+    display: none;
+  }
+
+  tbody tr {
+    margin-bottom: 30px;
+    border: 1px solid #ddd;
+    border-radius: 14px;
+    padding: 20px;
+  }
+
+  tbody tr td {
+    border: none;
+    padding: 12px 14px;
+    position: relative;
+    padding-left: 55%;
+    text-align: left;
+    font-size: 0.95rem;
+  }
+
+  tbody tr td::before {
+    position: absolute;
+    top: 10px;
+    left: 14px;
+    width: 50%;
+    white-space: nowrap;
+    font-weight: 700;
+    color: #2980b9;
+    font-size: 0.95rem;
+    content: attr(data-label);
+  }
+
+  .btn.save-btn,
+  .btn.cancel-btn {
+    width: 100%;
+    max-width: 100%;
+    padding: 14px 0;
+    font-size: 1.1rem;
+  }
+
+  .container {
+    padding: 30px 10px;
+    min-width: unset;
+    max-width: 99vw;
+  }
+
+  .back-arrow {
+    top: 18px;
+    left: 12px;
+    font-size: 1.6rem;
+  }
+}

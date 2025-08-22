@@ -1,0 +1,8 @@
+package in.main.hospitalManagement.service;
+
+public interface EmailService {
+    void sendEmail(String to, String subject, String body);
+    void sendText(String to, String subject, String text);
+    void sendHtml(String to, String subject, String html);
+    void sendWithAttachment(String to, String subject, String text, java.io.File file);
+}

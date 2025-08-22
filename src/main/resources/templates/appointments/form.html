@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Appointment Form</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div class="container">
+  <h1 th:text="${appointment.id} ? 'Edit Appointment' : 'Schedule New Appointment'"></h1>
+  <form th:action="@{/appointments/save}" th:object="${appointment}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <div class="form-group">
+      <label for="appointmentTime">Appointment Time:</label>
+      <input type="datetime-local" id="appointmentTime" th:field="*{appointmentTime}" required>
+    </div>
+    <div class="form-group">
+      <label for="reason">Reason:</label>
+      <textarea id="reason" th:field="*{reason}" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="doctor">Doctor:</label>
+      <select id="doctor" th:field="*{doctor.id}" required>
+        <option value="">Select a Doctor</option>
+        <option th:each="doctor : ${doctors}" th:value="${doctor.id}" th:text="${doctor.name}"
+                th:selected="${appointment.doctor != null and appointment.doctor.id == doctor.id}"></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="patient">Patient:</label>
+      <select id="patient" th:field="*{patient.id}" required>
+        <option value="">Select a Patient</option>
+        <option th:each="patient : ${patients}" th:value="${patient.id}" th:text="${patient.name}"
+                th:selected="${appointment.patient != null and appointment.patient.id == patient.id}"></option>
+      </select>
+    </div>
+    <button type="submit" class="btn save-btn">Save</button>
+    <a th:href="@{/appointments/list}" class="btn cancel-btn">Cancel</a>
+  </form>
+</div>
+</body>
+</html>

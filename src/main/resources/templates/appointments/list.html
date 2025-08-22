@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Appointment List</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+  </head>
+  <body>
+    <div class="container" style="position: relative">
+      <a
+        href="javascript:history.back()"
+        class="back-arrow"
+        title="Back"
+        aria-label="Back"
+        style="display: inline-block"
+        >&#8592;</a
+      >
+      <h1>Appointment List</h1>
+      <a th:href="@{/appointments/create}" class="btn create-btn"
+        >Schedule New Appointment</a
+      >
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Appointment Time</th>
+            <th>Reason</th>
+            <th>Doctor</th>
+            <th>Patient</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="appointment : ${appointments}">
+            <td th:text="${appointment.id}">1</td>
+            <td
+              th:text="${#temporals.format(appointment.appointmentTime, 'yyyy-MM-dd HH:mm')}"
+            >
+              2023-10-27 10:00
+            </td>
+            <td th:text="${appointment.reason}">Routine check-up</td>
+            <td th:text="${appointment.doctor.name}">Dr. Smith</td>
+            <td th:text="${appointment.patient.name}">John Doe</td>
+            <td>
+              <a
+                th:href="@{/appointments/edit/{id}(id=${appointment.id})}"
+                class="btn edit-btn"
+                >Edit</a
+              >
+              <a
+                th:href="@{/appointments/delete/{id}(id=${appointment.id})}"
+                class="btn delete-btn"
+                onclick="return confirm('Are you sure you want to delete this appointment?');"
+                >Delete</a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

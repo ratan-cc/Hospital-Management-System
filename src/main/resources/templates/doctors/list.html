@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Doctor List</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+  </head>
+  <body>
+    <div class="container" style="position: relative">
+      <a
+        href="javascript:history.back()"
+        class="back-arrow"
+        title="Back"
+        aria-label="Back"
+        style="display: inline-block"
+        >&#8592;</a
+      >
+      <h1>Doctor List</h1>
+      <a th:href="@{/doctors/create}" class="btn create-btn">Add New Doctor</a>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Specialization</th>
+            <th>Email</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="doctor : ${doctors}">
+            <td th:text="${doctor.id}">1</td>
+            <td th:text="${doctor.name}">Dr. Smith</td>
+            <td th:text="${doctor.specialization}">Cardiology</td>
+            <td th:text="${doctor.email}">smith@example.com</td>
+            <td>
+              <a
+                th:href="@{/doctors/edit/{id}(id=${doctor.id})}"
+                class="btn edit-btn"
+                >Edit</a
+              >
+              <a
+                th:href="@{/doctors/delete/{id}(id=${doctor.id})}"
+                class="btn delete-btn"
+                onclick="return confirm('Are you sure you want to delete this doctor?');"
+                >Delete</a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

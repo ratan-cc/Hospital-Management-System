@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Insurance Form</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${insurance.id} ? 'Edit Insurance' : 'Add New Insurance'"></h1>
+    <form th:action="@{/insurances/save}" th:object="${insurance}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <div class="form-group">
+            <label for="policyNumber">Policy Number:</label>
+            <input type="text" id="policyNumber" th:field="*{policyNumber}" required>
+        </div>
+        <div class="form-group">
+            <label for="provider">Provider:</label>
+            <input type="text" id="provider" th:field="*{provider}" required>
+        </div>
+        <div class="form-group">
+            <label for="validUntil">Valid Until:</label>
+            <input type="date" id="validUntil" th:field="*{validUntil}" required>
+        </div>
+        <button type="submit" class="btn save-btn">Save</button>
+        <a th:href="@{/insurances/list}" class="btn cancel-btn">Cancel</a>
+    </form>
+</div>
+</body>
+</html>
