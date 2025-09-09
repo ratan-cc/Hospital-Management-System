@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8" />
-  <title>Patient List</title>
+  <title>Patients List</title>
   <link rel="stylesheet" th:href="@{/css/styles.css}" />
   <script>
     function toggleSelectAll(source) {
@@ -47,26 +47,29 @@
         <th><input type="checkbox" onclick="toggleSelectAll(this)"> All</th>
         <th>ID</th>
         <th>Name</th>
-        <th>Email</th>
         <th>Mobile</th>
-        <th>Birth Date</th>
         <th>Gender</th>
-        <th>Blood Group</th>
         <th>Actions</th>
       </tr>
       </thead>
       <tbody>
+
+      <tr th:if="${#lists.isEmpty(patients)}">
+        <td colspan="9">No patients found.</td>
+      </tr>
+
       <tr th:each="patient : ${patients}">
         <td>
           <input type="checkbox" name="patientIds" th:value="${patient.id}">
         </td>
         <td th:text="${patient.id}">1</td>
-        <td th:text="${patient.name}">John Doe</td>
-        <td th:text="${patient.email}">john.doe@example.com</td>
+        <td>
+          <a th:href="@{/patients/{id}(id=${patient.id})}"
+             th:text="${patient.name}" class="link"></a>
+        </td>
         <td th:text="${patient.mobile}">9876543210</td>
-        <td th:text="${patient.birthDate}">1990-01-01</td>
         <td th:text="${patient.gender}">Male</td>
-        <td th:text="${patient.bloodGroup}">O_POSITIVE</td>
+<!--        <td th:text="${patient.bloodGroup}">O_POSITIVE</td>-->
         <td>
           <a
                   th:href="@{/patients/edit/{id}(id=${patient.id})}"

@@ -4,7 +4,6 @@ import in.main.hospitalManagement.entity.Patient;
 import in.main.hospitalManagement.repository.PatientRepository;
 import in.main.hospitalManagement.service.EmailService;
 import in.main.hospitalManagement.service.PatientService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,35 +14,19 @@ public class PatientServiceImpl implements PatientService {
 
     private final PatientRepository patientRepository;
     private final EmailService emailService;
+//    private final InsuranceServiceImpl insuranceService;
 
-    public PatientServiceImpl(PatientRepository patientRepository, EmailService emailService) {
+    public PatientServiceImpl(PatientRepository patientRepository, EmailService emailService /*, InsuranceServiceImpl insuranceService*/) {
         this.patientRepository = patientRepository;
         this.emailService = emailService;
+        //this.insuranceService = insuranceService;
     }
 
 
     @Override
     public Patient savePatient(Patient patient) {
-        Patient saved = patientRepository.save(patient);
-
-        // send a simple welcome email (text)
-        if (saved.getEmail() != null && !saved.getEmail().isBlank()) {
-            emailService.sendText(
-                    saved.getEmail(),
-                    "Welcome to Our Hospital",
-                    "Dear " + saved.getName() + ",\n\nYour registration is successful.\n\nRegards,\nHospital Team"
-            );
-        }
-        // send email after save
-        String subject = "Welcome, " + saved.getName();
-        String body = "Hello " + saved.getName() + ",\n\n"
-                + "Your registration is successful. "
-                + "Your registered mobile is: " + saved.getMobile();
-
-        emailService.sendEmail(saved.getEmail(), subject, body);
-        return saved;
+        return patientRepository.save(patient);
     }
-
 
     @Override
     public Patient updatePatient(Long id, Patient updatedPatient) {
@@ -61,7 +44,7 @@ public class PatientServiceImpl implements PatientService {
 
                     //Notify patient about update
                     if (saved.getEmail() != null && !saved.getEmail().isBlank()) {
-                        emailService.sendText(
+                        emailService.sendEmail(
                                 saved.getEmail(),
                                 "Your Profile Was Updated",
                                 "Hello " + saved.getName() + ",\n\nYour profile has been updated.\n\nRegards,\nHospital Team"

@@ -7,6 +7,53 @@
   padding: 0;
 }
 
+/* ===========================
+   Error Page Styles
+   =========================== */
+.error-container {
+  background: #232a34;
+  padding: 48px 60px;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+  max-width: 720px;
+  margin: auto;
+  text-align: center;
+  color: #f1f1f1;
+}
+
+.error-container h1 {
+  color: #ff4b5c;
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.error-container p {
+  font-size: 1.2rem;
+  color: #bfc9d1;
+  margin-bottom: 30px;
+  line-height: 1.7;
+}
+
+.error-container a {
+  display: inline-block;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #3a8dde 0%, #232a34 100%);
+  color: #f8f8ff;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 8px;
+  transition: background 0.3s ease, transform 0.2s ease;
+  border: 1.5px solid #3a8dde;
+}
+
+.error-container a:hover {
+  background: linear-gradient(135deg, #232a34 0%, #3a8dde 100%);
+  color: #00e6d8;
+  transform: translateY(-2px);
+}
+
+
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(135deg, #181c24 0%, #232a34 100%);
@@ -399,4 +446,5 @@ textarea:focus {
     left: 12px;
     font-size: 1.6rem;
   }
+
 }

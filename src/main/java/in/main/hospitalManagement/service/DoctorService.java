@@ -11,4 +11,8 @@ public interface DoctorService {
     boolean deleteDoctor(Long id);
     Optional<Doctor> getDoctorById(Long id);
     List<Doctor> getAllDoctors();
+
+
+
+
 }

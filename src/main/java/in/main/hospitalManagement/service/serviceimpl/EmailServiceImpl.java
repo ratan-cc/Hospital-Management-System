@@ -1,7 +1,6 @@
 package in.main.hospitalManagement.service.serviceimpl;
 
 import in.main.hospitalManagement.service.EmailService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -14,8 +13,12 @@ import java.io.File;
 @Service
 public class EmailServiceImpl implements EmailService {
 
-    @Autowired
-    private JavaMailSender mailSender;
+
+    private  final JavaMailSender mailSender;
+
+    public EmailServiceImpl(JavaMailSender mailSender) {
+        this.mailSender = mailSender;
+    }
 
     @Override
     public void sendEmail(String to, String subject, String body) {
@@ -23,25 +26,12 @@ public class EmailServiceImpl implements EmailService {
         message.setTo(to);
         message.setSubject(subject);
         message.setText(body);
+        message.setFrom(from);
         mailSender.send(message);
     }
 
     @Value("${app.mail.from:no-reply@yourdomain.com}")
     private String from;
-
-    public EmailServiceImpl(JavaMailSender mailSender) {
-        this.mailSender = mailSender;
-    }
-
-    @Override
-    public void sendText(String to, String subject, String text) {
-        SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setFrom(from);
-        msg.setTo(to);
-        msg.setSubject(subject);
-        msg.setText(text);
-        mailSender.send(msg);
-    }
 
     @Override
     public void sendHtml(String to, String subject, String html) {

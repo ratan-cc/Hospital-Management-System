@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 30px auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .info {
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        .info strong {
+            color: #555;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        table th, table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        table th {
+            background: #007bff;
+            color: white;
+        }
+        table tr:nth-child(even) {
+            background: #f2f2f2;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background: #007bff;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+        .back-btn:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2 th:text="'Details for ' + ${patient.name}"></h2>
+    <h3><a th:if="${patient != null}"
+           th:href="@{/patients/{id}/book(id=${patient.id})}"
+           class="btn">Book Appointment</a>
+    </h3>
+
+
+    <div class="info"><strong>ID:</strong> <span th:text="${patient.id}"></span></div>
+    <div class="info"><strong>Email:</strong> <span th:text="${patient.email}"></span></div>
+    <div class="info"><strong>Mobile:</strong> <span th:text="${patient.mobile}"></span></div>
+    <div class="info"><strong>Birth Date:</strong> <span th:text="${patient.birthDate}"></span></div>
+    <div class="info"><strong>Blood Group:</strong><span th:text="${patient.bloodGroup}"></span></div>
+    <div class="info"><strong>Insurance:</strong>
+        <span th:text="${patient.insurance != null ? patient.insurance.provider : 'N/A'}"></span>
+    </div>
+
+    <h3>Appointments</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Date/Time</th>
+            <th>Reason</th>
+            <th>Doctor</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="appt : ${appointments}">
+            <td th:text="${appt.appointmentTime}"></td>
+            <td th:text="${appt.reason}"></td>
+            <td th:text="${appt.doctor.name}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a class="back-btn" th:href="@{/patients/list}">⬅ Back to Patient List</a>
+</div>
+</body>
+</html>

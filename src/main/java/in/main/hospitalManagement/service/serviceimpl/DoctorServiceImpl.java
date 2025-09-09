@@ -28,7 +28,8 @@ public class DoctorServiceImpl implements DoctorService {
             existing.setName(updatedDoctor.getName());
             existing.setSpecialization(updatedDoctor.getSpecialization());
             existing.setEmail(updatedDoctor.getEmail());
-            existing.setDepartments(updatedDoctor.getDepartments());
+            existing.getDepartments().clear();
+            existing.getDepartments().addAll(updatedDoctor.getDepartments());
             return doctorRepository.save(existing);
         }).orElseThrow(() -> new RuntimeException("Doctor not found"));
     }

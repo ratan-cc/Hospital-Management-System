@@ -22,10 +22,10 @@ import java.util.List;
 @Table(
         uniqueConstraints = {
 //                @UniqueConstraint(name = "Unique email id", columnNames = {"email"}),
-                @UniqueConstraint(name = "" , columnNames = {"name" , "birthDate"})
+                @UniqueConstraint(name = "", columnNames = {"name", "birthDate"})
         },
         indexes = {
-             @Index(name = "idx_patient_birth_date", columnList = "birthDate")
+                @Index(name = "idx_patient_birth_date", columnList = "birthDate")
         }
 )
 public class Patient {
@@ -39,10 +39,10 @@ public class Patient {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
 
-    @Column(nullable = false , unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false, unique = true, length = 15) // Mobile must be unique
+    @Column(nullable = false, length = 13) // Mobile must be unique
     private String mobile;
 
     private String gender;
@@ -54,12 +54,12 @@ public class Patient {
     @Column(updatable = false)
     private LocalDateTime createdAt;
 
-    @OneToOne(cascade = {CascadeType.ALL} , orphanRemoval = true)
-    @JoinColumn //owning side
+    @OneToOne(cascade = {CascadeType.ALL}, orphanRemoval = true)
+    @JoinColumn(name = "insurance_id", referencedColumnName = "id") //owning side
     private Insurance insurance;
 
 
-    @OneToMany(mappedBy = "patient" , cascade = {CascadeType.REMOVE}, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "patient", cascade = {CascadeType.ALL}, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Appointment> appointment = new ArrayList<>();
 
 }

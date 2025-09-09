@@ -19,6 +19,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public Department saveDepartment(Department department) {
+
         return departmentRepository.save(department);
     }
 
@@ -27,7 +28,9 @@ public class DepartmentServiceImpl implements DepartmentService {
         return departmentRepository.findById(id).map(existing -> {
             existing.setName(updatedDepartment.getName());
             existing.setHeadDoctor(updatedDepartment.getHeadDoctor());
-            existing.setDoctors(updatedDepartment.getDoctors());
+            existing.getDoctors().clear();
+            existing.getDoctors().addAll(updatedDepartment.getDoctors());
+
             return departmentRepository.save(existing);
         }).orElseThrow(() -> new RuntimeException("Department not found"));
     }

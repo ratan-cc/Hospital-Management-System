@@ -29,8 +29,13 @@ public class Doctor {
     private String email;
 
     @ManyToMany
+    @JoinTable(
+            name = "dept_doc",
+            joinColumns = @JoinColumn(name = "doctor_id"),
+            inverseJoinColumns = @JoinColumn(name = "department_id")
+    )
     private Set<Department> departments = new HashSet<>();
 
-    @OneToMany(mappedBy = "doctor")
+    @OneToMany(mappedBy = "doctor" , cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Appointment> appointments = new ArrayList<>();
 }

@@ -19,13 +19,9 @@ public class Department {
     private String name;
 
     @OneToOne
+    @JoinColumn(name = "head_doctor_id", referencedColumnName = "id")
     private Doctor headDoctor;
 
-    @ManyToMany
-    @JoinTable(
-//            name = "dept_Doc",
-//            joinColumns = @JoinColumn(name = "Dpt_id"),
-//            inverseJoinColumns = @JoinColumn(name = "Doctor_id")
-    )
+    @ManyToMany(mappedBy = "departments")
     private Set<Doctor> doctors =new HashSet<>();
 }

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Book Appointment</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f6f9; }
+    .container { width: 50%; margin: 40px auto; background: white; padding: 20px;
+        border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    h2 { text-align: center; margin-bottom: 20px; }
+    label { display: block; margin: 10px 0 5px; font-weight: bold; }
+    input, select { width: 100%; padding: 10px; margin-bottom: 15px;
+        border-radius: 5px; border: 1px solid #ccc; }
+    .btn { background: #007bff; color: white; padding: 10px;
+        border: none; border-radius: 5px; cursor: pointer; }
+    .btn:hover { background: #0056b3; }
+    .error { color: red; margin-bottom: 10px; }
+    .success { color: green; margin-bottom: 10px; }
+    @media (max-width: 768px) {
+      .container { width: 90%; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h2 th:text="'Book Appointment for ' + ${patient.name}"></h2>
+
+  <!-- Messages -->
+  <div th:if="${error}" class="error" th:text="${error}"></div>
+  <div th:if="${success}" class="success" th:text="${success}"></div>
+
+  <!-- Appointment booking form -->
+  <form th:action="@{/patients/{id}/book(id=${patient.id})}" method="post">
+    <input type="hidden" name="patientId" th:value="${patient.id}" />
+
+    <!-- Doctor Dropdown -->
+    <label for="doctorId">Choose Doctor</label>
+    <select id="doctorId" name="doctorId" required>
+      <option value="" disabled selected>Select doctor</option>
+      <option th:each="doc : ${doctors}"
+              th:value="${doc.id}"
+              th:text="${doc.name}"
+              th:selected="${doc.id == selectedDoctorId}">
+      </option>
+    </select>
+
+    <!-- Date Picker -->
+    <label for="date">Choose Date</label>
+    <input type="date" id="date" name="date" th:value="${selectedDate}" required />
+
+    <!-- Time Slot Dropdown -->
+    <label for="appointmentTime">Choose Time</label>
+    <select id="appointmentTime" name="appointmentTime" th:disabled="${#lists.isEmpty(freeSlots)}" required>
+      <option value="" disabled selected
+              th:text="${#lists.isEmpty(freeSlots) ? 'No slots available' : 'Select available time'}">
+      </option>
+      <option th:each="slot : ${freeSlots}"
+              th:value="${#temporals.format(slot, 'yyyy-MM-dd''T''HH:mm')}"
+              th:text="${#temporals.format(slot, 'yyyy-MM-dd HH:mm')}">
+      </option>
+    </select>
+
+    <!-- Reason -->
+    <label for="reason">Reason</label>
+    <input type="text" id="reason" name="reason" required />
+
+    <!-- Submit -->
+    <button type="submit" class="btn" style="width:100%">Book Appointment</button>
+  </form>
+</div>
+</body>
+</html>
