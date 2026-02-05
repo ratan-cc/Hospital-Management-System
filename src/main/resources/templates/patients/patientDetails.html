@@ -96,6 +96,18 @@
         </tr>
         </tbody>
     </table>
+    <td>
+        <form th:action="@{/appointments/cancel/{id}(id=${appt.id}, patientId=${patient.id})}" method="post">
+            <button type="submit" class="btn delete-btn" onclick="return confirm('Are you sure you want to cancel this appointment?');">
+                Cancel Appointment
+            </button>
+        </form>
+    </td>
+    <div class="container">
+        <td>
+            <a th:href="@{/appointments/downloadSlip/{id}(id=${appt.id})}" class="btn">Download Slip</a>
+        </td> <br/>
+    </div>
 
     <a class="back-btn" th:href="@{/patients/list}">⬅ Back to Patient List</a>
 </div>

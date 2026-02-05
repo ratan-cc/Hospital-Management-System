@@ -19,8 +19,7 @@
           title="Back"
           aria-label="Back"
           style="display: inline-block"
-  >&#8592;</a
-  >
+  >&#8592;</a>
   <h1>Patient List</h1>
 
   <!-- Search by Mobile Number -->
@@ -74,14 +73,12 @@
           <a
                   th:href="@{/patients/edit/{id}(id=${patient.id})}"
                   class="btn edit-btn"
-          >Edit</a
-          >
+          >Edit</a>
           <a
                   th:href="@{/patients/delete/{id}(id=${patient.id})}"
                   class="btn delete-btn"
                   onclick="return confirm('Are you sure you want to delete this patient?');"
-          >Delete</a
-          >
+          >Delete</a>
         </td>
       </tr>
       </tbody>

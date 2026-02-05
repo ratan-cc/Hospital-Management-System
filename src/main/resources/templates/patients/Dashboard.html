@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+        }
+
+        /* Header */
+        .header {
+            background-color: #0d6efd;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h2 {
+            margin: 0;
+        }
+
+        /* Hamburger Menu */
+        .menu {
+            position: relative;
+        }
+
+        .menu-btn {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 40px;
+            background-color: white;
+            color: black;
+            width: 180px;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+            border-radius: 4px;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: black;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .dropdown a:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Dashboard Content */
+        .container {
+            padding: 20px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: #0d6efd;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+    <h2>🏥 Hospital Management System</h2>
+    <div class="menu">
+        <span class="menu-btn" onclick="toggleMenu()">☰</span>
+        <div class="dropdown" id="dropdownMenu">
+            <a href="#">My Profile</a>
+            <a href="#">Appointments</a>
+            <a href="#">Medical Records</a>
+            <a href="#">Bills & Payments</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+</div>
+
+<!-- Dashboard Content -->
+<div class="container">
+
+    <!-- Profile -->
+    <div class="card">
+        <h3>My Profile</h3>
+        <p><strong>Name:</strong> Ratan Singh</p>
+        <p><strong>Email:</strong> ratan@gmail.com</p>
+        <p><strong>Phone:</strong> 9876543210</p>
+        <p><strong>Age:</strong> 30</p>
+        <p><strong>Gender:</strong> Male</p>
+        <p><strong>Blood Group:</strong> O+</p>
+        <p><strong>Address:</strong> Bangalore, India</p>
+    </div>
+
+    <!-- Appointments -->
+    <div class="card">
+        <h3>Appointments</h3>
+        <table>
+            <tr>
+                <th>Doctor</th>
+                <th>Department</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+            <tr>
+                <td>Dr. Sharma</td>
+                <td>Cardiology</td>
+                <td>12-Jan-2026</td>
+                <td>Confirmed</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Medical Records -->
+    <div class="card">
+        <h3>Medical Records</h3>
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Diagnosis</th>
+                <th>Prescription</th>
+            </tr>
+            <tr>
+                <td>10-Jan-2026</td>
+                <td>Fever</td>
+                <td>Paracetamol</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Bills -->
+    <div class="card">
+        <h3>Bills & Payments</h3>
+        <table>
+            <tr>
+                <th>Bill No</th>
+                <th>Amount</th>
+                <th>Status</th>
+            </tr>
+            <tr>
+                <td>INV-1001</td>
+                <td>₹500</td>
+                <td>Paid</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById("dropdownMenu");
+        menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
+</script>
+
+</body>
+</html>
+```
